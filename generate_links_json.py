@@ -16,28 +16,28 @@ def generate_link_generations(start, end):
         # Setting url
         if generation == 1:
             url = "https://en.wikipedia.org/wiki/List_of_generation_I_Pok%C3%A9mon"
-            filename = "./result/first_generation.json"
+            filename = "./output/first_generation.json"
         elif generation == 2:
             url = "https://en.wikipedia.org/wiki/List_of_generation_II_Pok%C3%A9mon"
-            filename = "./result/second_generation.json"
+            filename = "./output/second_generation.json"
         elif generation == 3:
             url = "https://en.wikipedia.org/wiki/List_of_generation_III_Pok%C3%A9mon"
-            filename = "./result/third_generation.json"
+            filename = "./output/third_generation.json"
         elif generation == 4:
             url = "https://en.wikipedia.org/wiki/List_of_generation_IV_Pok%C3%A9mon"
-            filename = "./result/fourth_generation.json"
+            filename = "./output/fourth_generation.json"
         elif generation == 5:
             url = "https://en.wikipedia.org/wiki/List_of_generation_V_Pok%C3%A9mon"
-            filename = "./result/fifth_generation.json"
+            filename = "./output/fifth_generation.json"
         elif generation == 6:
             url = "https://en.wikipedia.org/wiki/List_of_generation_VI_Pok%C3%A9mon"
-            filename = "./result/sixth_generation.json"
+            filename = "./output/sixth_generation.json"
         elif generation == 7:
             url = "https://en.wikipedia.org/wiki/List_of_generation_VII_Pok%C3%A9mon"
-            filename = "./result/seventh_generation.json"
+            filename = "./output/seventh_generation.json"
         elif generation == 8:
             url = "https://en.wikipedia.org/wiki/List_of_generation_VIII_Pok%C3%A9mon"
-            filename = "result/eighth_generation.json"
+            filename = "./output/eighth_generation.json"
         else:
             return
 
@@ -68,7 +68,7 @@ def generate_link_generations(start, end):
         links = []
         for x in df["Name"]:
             # Replacing blank spaces and dots
-            x = x.replace(" ", "-").replace(".", "").replace(":", "")
+            x = x.replace(" ", "-").replace(".", "").replace(":", "").replace("'", "")
             # Detecting female nidoran and male nidoran
             if x == "Nidoran\u2640":
                 x = "nidoran-f"
@@ -78,6 +78,12 @@ def generate_link_generations(start, end):
             current_link = "https://pokemondb.net/pokedex/" + unidecode.unidecode(x)
             if current_link in links:
                 print("Repeated")
+            elif current_link == "https://pokemondb.net/pokedex/MissingNo":
+                print("Invalid")
+            elif current_link == "https://pokemondb.net/pokedex/Unnamed-Legendary-Pokemon-(1)":
+                print("Invalid")
+            elif current_link == "https://pokemondb.net/pokedex/Unnamed-Legendary-Pokemon-(2)":
+                print("Invalid")
             else:
                 links.append(current_link)
 
